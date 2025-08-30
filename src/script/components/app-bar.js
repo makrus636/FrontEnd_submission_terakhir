@@ -1,18 +1,16 @@
-
-
 class AppBar extends HTMLElement {
-  _shadowRoot = null;
-  _style = null;
-  
-  constructor() {
-    super();
-    
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._style = document.createElement('style');
-  }
-  
-  _updateStyle() {
-    this._style.textContent = `
+    _shadowRoot = null
+    _style = null
+
+    constructor() {
+        super()
+
+        this._shadowRoot = this.attachShadow({ mode: 'open' })
+        this._style = document.createElement('style')
+    }
+
+    _updateStyle() {
+        this._style.textContent = `
       :host {
         display: block;
         width: 100%;
@@ -49,32 +47,31 @@ class AppBar extends HTMLElement {
       button:hover {
         background-color: #ddd;
       }
-      `;
-    
-  }
-  
-  _emptyContent() {
-    this._shadowRoot.innerHTML = '';
-  }
+      `
+    }
 
-  connectedCallback() {
-    this.render();
-  }
-  
-  render() {
-    this._emptyContent();
-    this._updateStyle();
+    _emptyContent() {
+        this._shadowRoot.innerHTML = ''
+    }
 
-    this._shadowRoot.appendChild(this._style);
-    this._shadowRoot.innerHTML += `
+    connectedCallback() {
+        this.render()
+    }
+
+    render() {
+        this._emptyContent()
+        this._updateStyle()
+
+        this._shadowRoot.appendChild(this._style)
+        this._shadowRoot.innerHTML += `
     
       <div>
         <h1 class="app-name">Catatan</h1>
         <button id="showFormBtn" onclick="showForm()" name="showFormBtn">Tambah Catatan</button>
       </div>
       
-    `;
-  }
+    `
+    }
 }
 
-customElements.define('app-bar', AppBar);
+customElements.define('app-bar', AppBar)

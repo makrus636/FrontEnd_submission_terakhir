@@ -1,6 +1,11 @@
-import notesData from "../data/local/notes.js";
+import Note from '../api/Note.js'
+const note = new Note()
 
-document.addEventListener('DOMContentLoaded', function () {
-    const noteListElement = document.querySelector('note-list');
-    noteListElement.setAttribute('notes-data', JSON.stringify(notesData));
-});
+document.addEventListener('DOMContentLoaded', async function () {
+    note.getNotes()
+})
+
+document.getElementById('show-archive').addEventListener('change', function () {
+    const isChecked = this.checked
+    note.getNoteByArchive(isChecked)
+})
